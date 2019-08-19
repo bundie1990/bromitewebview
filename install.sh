@@ -25,12 +25,14 @@ comp_check
 # Uncomment and change 'MINAPI' and 'MAXAPI' to the minimum and maximum android version for your mod
 # Uncomment DYNLIB if you want libs installed to vendor for oreo+ and system for anything older
 # Uncomment SYSOVER if you want the mod to always be installed to system (even on magisk) - note that this can still be set to true by the user by adding 'sysover' to the zipname
+# Uncomment DIRSEPOL if you want sepolicy patches applied to the boot img directly (not recommended) - THIS REQUIRES THE RAMDISK PATCHER ADDON (this addon requires minimum api of 17)
 # Uncomment DEBUG if you want full debug logs (saved to /sdcard in magisk manager and the zip directory in twrp) - note that this can still be set to true by the user by adding 'debug' to the zipname
-#MINAPI=21
+MINAPI=17
 #MAXAPI=25
 #DYNLIB=true
 #SYSOVER=true
-#DEBUG=true
+#DIRSEPOL=true
+DEBUG=true
 
 # Uncomment if you do *NOT* want Magisk to mount any files for you. Most modules would NOT want to set this flag to true
 # This is obviously irrelevant for system installs. This will be set to true automatically if your module has no files in system
@@ -54,7 +56,7 @@ REPLACE_EXAMPLE="
 
 # Construct your own list here
 REPLACE="
-"
+/system/app/webview"
 
 ##########################################################################################
 # Custom Logic
@@ -68,7 +70,8 @@ print_modname() {
 }
 
 set_permissions() {
-  : # Remove this if adding to this function
+  # Remove this if adding to this function
+  set_perm_recursive $MODPATH 0 0 0755 0644
 
   # Note that all files/folders have the $UNITY prefix - keep this prefix on all of your files/folders
   # Also note the lack of '/' between variables - preceding slashes are already included in the variables
@@ -94,3 +97,5 @@ unity_custom() {
 }
 
 # Custom Functions for Install AND Uninstall - You can put them here
+
+ui_print "$ZIPFILE $MODPATH $TMPDIR"

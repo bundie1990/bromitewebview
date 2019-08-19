@@ -1,7 +1,10 @@
-id=UnityTemplate
-name=Unity (Un)Installer Template
-version=v4.4
-versionCode=31
-author=ahrion, zackptg5
-description=
-support=https://forum.xda-developers.com/apps/magisk/module-audio-modification-library-t3579612
+id=bromitewebview
+name=Bromite Systemless Webview
+version=4.0.0
+versionCode=3060
+author=Innonetlife
+description=Install Bromite System Webview systemless-ly, on any ROM! 
+You can block ads and fingerprinting, and protect your privacy with it. 
+ All credit goes to original developers of Bromite for the app. 
+ See the README for support (tap the module in Downloads in Magisk Manager)
+
